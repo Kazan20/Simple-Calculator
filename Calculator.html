@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Calculator</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+		}
+		
+		.calculator-container {
+			width: 250px;
+			margin: 40px auto;
+			background-color: #f0f0f0;
+			padding: 20px;
+			border: 1px solid #ccc;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+		}
+		
+		.result {
+			font-size: 36px;
+			text-align: right;
+			margin-bottom: 20px;
+		}
+		
+		.button {
+			width: 50%;
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin: 10px;
+		}
+		
+		.button:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+</head>
+<body>
+	<div class="calculator-container">
+		<h2>Simple Calculator</h2>
+		<input type="text" id="result" readonly class="result">
+		
+		<table>
+			<tr>
+				<td><button id="7" class="button">7</button></td>
+				<td><button id="8" class="button">8</button></td>
+				<td><button id="9" class="button">9</button></td>
+				<td><button id="div" class="button">/</button></td>
+			</tr>
+			<tr>
+				<td><button id="4" class="button">4</button></td>
+				<td><button id="5" class="button">5</button></td>
+				<td><button id="6" class="button">6</button></td>
+				<td><button id="x" class="button">*</button></td>
+			</tr>
+			<tr>
+				<td><button id="1" class="button">1</button></td>
+				<td><button id="2" class="button">2</button></td>
+				<td><button id="3" class="button">3</button></td>
+				<td><button id="-" class="button">-</button></td>
+			</tr>
+			<tr>
+				<td><button id="0" class="button">0</button></td>
+				<td><button id="." class="button">.</button></td>
+				<td><button id="+" class="button">+</button></td>
+				<td><button id="=" class="button">=</button></td>
+			</tr>
+		</table>
+		
+		<script>
+			let result = document.getElementById('result');
+			let buttons = document.querySelectorAll('.button');
+			buttons.forEach(button => {
+				button.addEventListener('click', (event) => {
+					let value = event.target.textContent;
+					if (value === '=') {
+						result.value = eval(result.value);
+					} else if (value === '0' && result.value !== '') {
+						result.value += '0';
+					} else if (value === '.') {
+						if (!result.value.includes('.')) {
+							result.value += value;
+						}
+					} else {
+						result.value += value;
+					}
+				});
+			});
+		</script>
+	</div>
+</body>
+</html>
